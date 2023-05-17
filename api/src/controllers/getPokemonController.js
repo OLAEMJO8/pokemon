@@ -20,4 +20,4 @@ const { Pokemons } = require("../db");
 //! console.log()
 //     ).data;
 //     const pokemonApi = filterDataApi(infoApi);
-module.exports = getPokemonController;
+// module.exports = getPokemonController;
