@@ -27,4 +27,4 @@ conn.sync({ force: true }).then(() => {
   });
 });
 
-// !cambiar force true a false 
+// !cambiar a false

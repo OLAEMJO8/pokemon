@@ -1,23 +1,54 @@
+const axios = require("axios");
 
-const { Pokemons } = require("../db");
+const { Pokemons , Type } = require("../db");
 
-// const filterDataApi = (arr) corregir objeto 
-//   arr.map((pokemon) => {
-//     return {
-//       name: pokemon.name,
-//       imagen: pokemon.image,
-//       vida: pokemon.vida,
-//       ataque: pokemon.ataque,
-//       defensa: pokemon.defensa,
-//     };
-//   });
+getPokemonController = async (name) => {
 
+  const apiResponse = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40');
+  const apiPokemons = apiResponse.data.results;
 
-// getPokemonController= async (name) => {
-//   if (name) {
-//     const infoApi = (
-//       await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-//! console.log()
-//     ).data;
-//     const pokemonApi = filterDataApi(infoApi);
-// module.exports = getPokemonController;
+  const dbPokemons = await Pokemons.findAll({
+    include: {
+      model: Type,
+      through: { attributes: [] },
+      attributes: ["name"],
+    }
+  });
+
+  const filterApiPokemons = await Promise.all(apiPokemons.map(async (el) => {
+    const res = await axios.get(el.url);
+    const poke = res.data;
+    return {
+      id: poke.id,
+      name: poke.name,
+      img: poke.sprites.other.dream_world.front_default,
+      types: poke.types.map(el => el.type.name),
+      hp: poke.stats[0].base_stat,
+      attack: poke.stats[1].base_stat,
+      defense: poke.stats[2].base_stat,
+
+    };
+  }));
+
+  const filterDbPokemons = dbPokemons.map(d => {
+    d = d.dataValues;
+    d.types = d.types.map(t => t.dataValues.name);
+    return d;
+  });
+
+  const allPokemons = [...filterDbPokemons, ...filterApiPokemons];
+
+  allPokemons.forEach(p => {
+    p.name = p.name.charAt(0).toUpperCase() + p.name.slice(1);
+  });
+
+  if (name) {
+    const pokemonName = allPokemons.find(p => p.name.toLowerCase() === name.toLowerCase());
+    if (pokemonName) return pokemonName;
+    return { msg: "El nombre no coincide con un Pokemon" };
+  } else {
+    return allPokemons;
+  }
+}
+
+module.exports = getPokemonController;

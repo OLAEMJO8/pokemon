@@ -1,9 +1,9 @@
-const axios = require("axios");
-const { Types } = require("../db");
+// const axios = require("axios");
+// const { Types } = require("../db");
 
 
-getTypesController = async () => {
+// getTypesController = async () => {
   
-};
+// };
 
-module.exports = getTypesController;
+// module.exports = getTypesController;
