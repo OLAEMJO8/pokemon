@@ -1,9 +1,10 @@
-// const axios = require("axios");
-// const { Types } = require("../db");
+const axios = require("axios");
+const { Pokemon, Type } = require("../db");
+
+getTypesController = async () => {
+ 
 
 
-// getTypesController = async () => {
-  
-// };
+};
 
-// module.exports = getTypesController;
+module.exports = getTypesController;

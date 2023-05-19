@@ -6,8 +6,8 @@ const { Pokemons } = require("../db");
 
 const getOneHandler = async (req, res) => {
   
+  const { id } = req.query;
   try {
-    const { id } = req.params;
     const response = await getIdController(id);
 
     res.status(200).json(response);
