@@ -1,18 +1,19 @@
 const pokemonCreate = require("../controllers/pokemonCreate");
-const { Pokemons } = require("../db");
+const { Pokemons, Types } = require("../db");
 
 //!4
 const createNewHandler = async (req, res) => {
-  const { id, name, imagen, vida, ataque, defensa } = req.body;
-
+  
   try {
+    const { id, name, img, types, hp, attack, defense } = req.body;
     const response = await pokemonCreate(
       id,
       name,
-      imagen,
-      vida,
-      ataque,
-      defensa
+      img,
+      types,
+      hp,
+      attack,
+      defense
     );
     res.status(200).json(response);
   } catch (error) {

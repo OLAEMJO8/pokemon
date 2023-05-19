@@ -1,16 +1,18 @@
-// const axios = require("axios");
-const { Pokemons } = require("../db");
+const axios = require("axios");
+const { Pokemons , Types} = require("../db");
 
 /////////////////////////////////////////////////
-const pokemonCreate = async (id, name, imagen, vida, ataque, defensa) => {
-  return await Pokemons.create({
+const pokemonCreate = async (id, name, img, types, hp, attack, defense) => {
+  const crearPokemon = await Pokemons.create({
     id,
     name,
-    imagen,
-    vida,
-    ataque,
-    defensa,
+    img,
+    types,
+    hp,
+    attack,
+    defense
   });
-};
+  return crearPokemon
+}
 
 module.exports = pokemonCreate;

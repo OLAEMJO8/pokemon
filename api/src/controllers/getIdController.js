@@ -1,13 +1,20 @@
 const axios = require("axios");
-const { Pokemons } = require("../db");
+const { filtroPokemons } = require("../Utils/Utils");
 
-/////////////////////////////////////////////////
-const getIdController = async (id, source) => {
-  const pokemon =
-    source === "api"
-      ? (await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)).data
-      : await Pokemons.findByPk(id);
+const getIdController = async (id) => {
+  let idPokemons = await filtroPokemons();
 
-  return pokemon;
+  if (id) {
+    const pokemon = idPokemons.find((p) => p.id == id);
+    console.log(pokemon)
+    if (pokemon) {
+      return pokemon;
+    } else {
+      return { msg: "El ID no coincide con un Pokemon" };
+    }
+  } else {
+    return "ID no especificado";
+  }
 };
+
 module.exports = getIdController;

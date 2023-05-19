@@ -2,15 +2,13 @@ const getIdController = require("../controllers/getIdController");
 
 const { Pokemons } = require("../db");
 
-//!2
+//? Busqueda por Id
 
 const getOneHandler = async (req, res) => {
-  const { id } = req.params;
-
-  const source = isNaN(id) ? "bdd" : "api";
-
+  
   try {
-    const response = await getIdController(id, source);
+    const { id } = req.params;
+    const response = await getIdController(id);
 
     res.status(200).json(response);
   } catch (error) {
