@@ -1,13 +1,22 @@
-// import './card.css';
+// import './cards.css';
 import React from "react";
 
-function Card() {
+
+
+
+function Card({id,name,img,types}) {
   return (
-    <div>
-      <h3>ID</h3>
-      <h3>Name</h3>
-      <h3>Types</h3>
-      <h3>Imagen</h3>
+    <div key={id}>
+     <div>
+      <h3>{name.toUpperCase()}</h3>
+     </div>
+     <div>
+      <h3>Types: {types.map(m => ` - ${m.charAt(0).toUpperCase() + m.slice(1)}`).join(' ')}</h3>
+     </div>
+     <div>
+        <img src={img} alt={`Imagen de ${name}`} />
+     </div>
+    
     </div>
   );
 }
