@@ -11,10 +11,12 @@ const filtroPokemons = async () => {
   const filterDbPokemons = await Pokemons.findAll({
     include: {
       model: Type,
-      through: { attributes: [] },
-      attributes: ["name"],
+      attributes: ["id"],
+  
     },
   });
+  
+ console.log(filterDbPokemons)
 
   const filterApiPokemons = await Promise.all(
     apiPokemons.map(async (el) => {
@@ -31,6 +33,8 @@ const filtroPokemons = async () => {
       };
     })
   );
+
+  
 
   const allPokemons = [...filterDbPokemons, ...filterApiPokemons];
 

@@ -10,19 +10,52 @@
 //   };
   
 //   module.exports = getTypesController;
+
+
+// getTypesController = async () => {
+//   let types = await Type.findAll();
+
+//   if (types.length === 0) {
+//     const response = await axios.get("https://pokeapi.co/api/v2/type");
+//     types = response.data.results.map((type) => type.name);
+//     await Type.bulkCreate(types.map((type) => ({ name: type })));
+//   }
+
+//   return types;
+
+
+ 
+// }
+
+// module.exports = getTypesController;
 const axios = require("axios");
-const { Pokemon, Type } = require("../db");
+const { Pokemons, Type } = require("../db");
 
-getTypesController = async () => {
-  let types = await Type.findAll();
+const getTypesController = async () => {
+  try {
+    const arrayTypes = [];
 
-  if (types.length === 0) {
     const response = await axios.get("https://pokeapi.co/api/v2/type");
-    types = response.data.results.map((type) => type.name);
-    await Type.bulkCreate(types.map((type) => ({ name: type })));
-  }
+    response.data.results.forEach((type) => arrayTypes.push(type.name));
 
-  return types;
+    const types = await Promise.all(arrayTypes.map(async (obj) => {
+      try {
+        return await Type.findOrCreate({
+          where: {
+            name: obj,
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }));
+
+    const allTypes = await Type.findAll();
+
+    return allTypes;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = getTypesController;

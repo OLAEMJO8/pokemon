@@ -1,11 +1,21 @@
 // import './cards.css';
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 
 
 function Card({id,name,img,types}) {
   return (
+   <>
+   
+   <div>
+     <Link to={`/pokemon/${id}`}>
+      <button>Ver Detalle</button>
+    </Link>
+   </div>
+
+    
     <div key={id}>
      <div>
       <h3>{name.toUpperCase()}</h3>
@@ -18,6 +28,7 @@ function Card({id,name,img,types}) {
      </div>
     
     </div>
+   </>
   );
 }
 
