@@ -91,7 +91,7 @@ export const searchPokemon = (name) => {
         payload: arr,
       });
     } catch (error) {
-      throw new Error("El nombre del Pokemon no existe: " + error.message);
+      throw new Error("Pokemon no encontrado ");
     }
   };
 };

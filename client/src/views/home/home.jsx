@@ -1,3 +1,4 @@
+// Home.js
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../../component/card/card";
@@ -23,7 +24,8 @@ function Home() {
   const allPokemon = useSelector((state) => state.pokemons);
 
   const typesPokemon = useSelector((state) => state.types);
-console.log(typesPokemon)
+  console.log(typesPokemon);
+
   const [order, setOrder] = useState("");
   const [origen, setOrigen] = useState("All");
   const [pagAct, setPagAct] = useState(1);
@@ -31,6 +33,7 @@ console.log(typesPokemon)
   const ultimoPoke = pagAct * pokePag;
   const primerPoke = ultimoPoke - pokePag;
   const pokeAct = allPokemon.slice(primerPoke, ultimoPoke);
+ 
 
   const paginado = (numPage) => {
     setPagAct(numPage);
@@ -84,6 +87,7 @@ console.log(typesPokemon)
       <h1>Esta es la Home</h1>
       <div>
         <Navbar onSearch={handleSearch} />
+        
       </div>
       <div>
         <label>
@@ -134,20 +138,20 @@ console.log(typesPokemon)
         />
       </div>
       <section>
-        {pokeAct?.map((el) => {
-          return (
-            <Card
-              key={el.id}
-              name={el.name}
-              types={el.types}
-              img={el.img}
-              id={el.id}
-            />
-          );
-        })}
+        {pokeAct?.map((el, index) => (
+          <Card
+            key={`${el.id}-${index}`}
+            name={el.name}
+            types={el.types}
+            img={el.img}
+            id={el.id}
+          />
+        ))}
       </section>
     </div>
   );
 }
 
 export default Home;
+
+
