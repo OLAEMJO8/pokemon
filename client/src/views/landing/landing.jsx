@@ -4,14 +4,10 @@ import "./landing.css";
 
 function LandingPage() {
   return (
-    <div>
-      
-      
-      <div className="button-container">
-        
-      </div>
+    <div className="landin">
+      <div className="button-container"></div>
       <Link to="/home">
-        <button className="button">Get Started</button>
+        <button className="landin button">Get Started</button>
       </Link>
     </div>
   );

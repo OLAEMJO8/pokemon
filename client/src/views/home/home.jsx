@@ -25,7 +25,7 @@ function Home() {
   const allPokemon = useSelector((state) => state.pokemons);
 
   const typesPokemon = useSelector((state) => state.types);
-  console.log(typesPokemon);
+
 
   const [order, setOrder] = useState("");
   const [origen, setOrigen] = useState("All");
@@ -66,9 +66,9 @@ function Home() {
   };
 
   const handleFilterCreated = (e) => {
-    const selectedOrigin = e.target.value;
-    dispatch(pokemonFiltradoOrigen(selectedOrigin));
-    setOrigen(selectedOrigin);
+    
+    dispatch(pokemonFiltradoOrigen(e.target.value));
+    setOrigen(e.target.value);
     setPagAct(1);
     setRefreshState((prevState) => !prevState);
   };

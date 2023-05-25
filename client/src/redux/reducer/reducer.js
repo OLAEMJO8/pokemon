@@ -1,3 +1,4 @@
+
 const initialState = {
   pokemons: [],
   pokemonNames: [],
@@ -11,7 +12,9 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
+
   switch (action.type) {
+  
     case "GET_POKEMONS":
       return {
         ...state,
@@ -92,24 +95,32 @@ export default function reducer(state = initialState, action) {
 
     case "FILTRO_POKEMON_TIPO":
       const pokemonsAll = state.pokemons;
+      console.log(pokemonsAll)
       const pokemonsByType =
         action.payload === "all"
-          ? { ...state, pokemons: pokemonsAll }
+          ? pokemonsAll
           : pokemonsAll.filter(
               (f) =>
                 f.types[0] === action.payload || f.types[1] === action.payload
             );
-      console.log(pokemonsByType);
+            
       return {
         ...state,
         pokemons: pokemonsByType,
       };
 
     case "SEARCH_POKEMON":
-      return {
-        ...state,
-        pokemons: action.payload,
-      };
+      if (action.payload.length === 0) {
+        return {
+          ...state,
+          pokemons: initialState.pokemons,
+        };
+      } else {
+        return {
+          ...state,
+          pokemons: action.payload,
+        };
+      }
 
     default:
       return state;
