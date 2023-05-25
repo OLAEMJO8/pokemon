@@ -1,4 +1,5 @@
-// Home.js
+import './home.css';
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../../component/card/card";
@@ -33,7 +34,6 @@ function Home() {
   const ultimoPoke = pagAct * pokePag;
   const primerPoke = ultimoPoke - pokePag;
   const pokeAct = allPokemon.slice(primerPoke, ultimoPoke);
- 
 
   const paginado = (numPage) => {
     setPagAct(numPage);
@@ -83,32 +83,33 @@ function Home() {
   };
 
   return (
-    <div>
-      <h1>Esta es la Home</h1>
-      <div>
+    <div className="container">
+      <div className="navbar">
         <Navbar onSearch={handleSearch} />
-        
       </div>
-      <div>
-        <label>
+
+      <div className="filter-options">
+        <label className="label">
           Order Pokemons:
-          <select onChange={handleSortName}>
+          <select className="select" onChange={handleSortName}>
             <option value="none">None</option>
             <option value="a-z">a-z</option>
             <option value="z-a">z-a</option>
           </select>
         </label>
-        <label>
+
+        <label className="label">
           Order By Attack:
-          <select onChange={handleSortAttack}>
+          <select className="select" onChange={handleSortAttack}>
             <option value="attack">Attack</option>
             <option value="max">Max</option>
             <option value="min">Min</option>
           </select>
         </label>
-        <label>
+
+        <label className="label">
           Filter by Type:
-          <select onChange={handleFilter}>
+          <select className="select" onChange={handleFilter}>
             <option value="all">All</option>
             {typesPokemon.map((poke) => {
               return (
@@ -119,16 +120,18 @@ function Home() {
             })}
           </select>
         </label>
-        <label>
+
+        <label className="label">
           Show Pokemons:
-          <select onChange={handleFilterCreated}>
+          <select className="select" onChange={handleFilterCreated}>
             <option value="all">All</option>
             <option value="db">From Db</option>
             <option value="api">From Api</option>
           </select>
         </label>
       </div>
-      <div>
+
+      <div className="paginado">
         <Paginado
           pokePag={pokePag}
           allPokemon={allPokemon.length}
@@ -137,7 +140,8 @@ function Home() {
           pagAct={pagAct}
         />
       </div>
-      <section>
+
+      <section className="card-container">
         {pokeAct?.map((el, index) => (
           <Card
             key={`${el.id}-${index}`}
@@ -153,5 +157,3 @@ function Home() {
 }
 
 export default Home;
-
-

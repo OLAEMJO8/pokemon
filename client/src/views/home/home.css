@@ -1,0 +1,58 @@
+.home {
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+ .label {
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.2s;
+  font-family: "Arial";
+  font-size: 15px;
+  text-transform: uppercase;
+} 
+
+.select {
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.label:hover,
+.select:hover {
+  background-color: rgba(15, 13, 13, 0);
+  color: black;
+}
+/* 
+.paginado {
+  margin-top: 5px;
+  margin-right: 5px;} */

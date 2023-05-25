@@ -1,9 +1,10 @@
-// import './card.css';
+import './navbarEstilos.css';
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchPokemon } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
+
 function Navbar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -16,20 +17,21 @@ function Navbar() {
   const handleButton = (event) => {
     event.preventDefault();
     dispatch(searchPokemon(name));
-    setName("");
+    // setName("");
   };
 
   return (
     <div>
       <form>
         <input
+          className="input"
           type="text"
           value={name}
           placeholder="Busqueda"
           onChange={handleInput}
         />
         <Link to={`/home/${name}`}>
-          <button type="submit" onClick={handleButton}>
+          <button className="button" type="submit" onClick={handleButton}>
             Buscar
           </button>
         </Link>

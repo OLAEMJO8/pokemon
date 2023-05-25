@@ -1,0 +1,61 @@
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 10px solid black;
+    width: 25%;
+    height: 0%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    transition: transform 0.2s;
+    margin: 50px auto 0;
+    font-family: "Arial";
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  
+  
+
+.pokemon-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.small-text {
+  font-size: 20px;
+  border: 5px solid black;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+.button {
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0);
+  color: black;
+}
+
+.button-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+img {
+  width: 100%;
+
+  object-fit: cover;
+}

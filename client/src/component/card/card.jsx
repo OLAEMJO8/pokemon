@@ -1,20 +1,24 @@
-// Card.js
 import React from "react";
 import { Link } from "react-router-dom";
+import "./card.css";
 
 function Card({ id, name, img, types }) {
   return (
-    <>
-      <div>
-        <Link to={`/pokemon/${id}`}>
-          <button>Ver Detalle</button>
-        </Link>
+    <div className="card">
+
+      <div className="text">
+        <h1> {name}</h1>
+      </div>
+      <div className="text">
+      <div className="img">
+        <img src={img} alt={`Imagen de ${name}`} />
       </div>
 
-      <div>
-        <h3>Nombre: {name}</h3>
+      <div className="button-container">
+        <Link to={`/pokemon/${id}`}>
+          <button className="button">Ver Detalle</button>
+        </Link>
       </div>
-      <div>
         <h3>
           Tipos:{" "}
           {types?.map((m) =>
@@ -31,10 +35,7 @@ function Card({ id, name, img, types }) {
           )}
         </h3>
       </div>
-      <div>
-        <img src={img} alt={`Imagen de ${name}`} />
-      </div>
-    </>
+    </div>
   );
 }
 
